@@ -1,6 +1,0 @@
-{ "index" : { "_index" : "duinodataviz", "_type" : "record" } }
-{"datetime" : {{jsonize(cells["datetime"].value)}}, "type": "lumiere", "value" : {{jsonize(cells["lumiere"].value)}} }
-{ "index" : { "_index" : "duinodataviz", "_type" : "record" } }
-{"datetime" : {{jsonize(cells["datetime"].value)}}, "type": "temperature", "value" : {{jsonize(cells["temperature"].value)}} }
-{ "index" : { "_index" : "duinodataviz", "_type" : "record" } }
-{"datetime" : {{jsonize(cells["datetime"].value)}}, "type": "son", "value" : {{jsonize(cells["son"].value)}} }
