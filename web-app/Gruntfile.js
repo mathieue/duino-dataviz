@@ -12,6 +12,33 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   grunt.initConfig({
+    'bower-install': {
+    
+      target: {
+    
+        // Point to the html file that should be updated
+        // when you run `grunt bower-install`
+        html: 'app/index.html',
+    
+        // Optional:
+    
+        // If your file paths shouldn't contain a certain
+        // portion of a url, it can be excluded
+        ignorePath: 'app/',
+    
+        // Customize how your stylesheets are included on
+        // your page.
+        //
+        //   default: '<link rel="stylesheet" href="{{filePath}}" />'
+        cssPattern: '<link href="{{filePath}}" rel="stylesheet">',
+    
+        // Customize how your <script>s are included into
+        // your HTML file.
+        //
+        //   default: '<script src="{{filePath}}"></script>'
+        jsPattern: '<script type="text/javascript" src="{{filePath}}"></script>'
+      }
+    },
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
@@ -294,6 +321,8 @@ module.exports = function (grunt) {
       }
     }
   });
+
+  grunt.loadNpmTasks('grunt-bower-install');
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
