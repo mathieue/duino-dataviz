@@ -23,6 +23,17 @@ angular.module('webAppApp')
       }
     }
 
+
+     es.promiseThen = function (httpPromise, successcb, errorcb) {
+       return httpPromise.then(function (response) {
+         (successcb || angular.noop)(response.data);
+         return response.data;
+       }, function (response) {
+         (errorcb || angular.noop)(undefined);
+         return undefined;
+       });
+     };
+
     // get our server instance
     // define the es server inplementation
     es.server = function(url) {
@@ -39,13 +50,16 @@ angular.module('webAppApp')
             console.log( 'something went wrong on elascticsearch call', status, err );
           }
         },
-        post: function(esQuery) {
-          return $http({
+        post: function(esQuery, successcb, errorcb) {
+
+          return es.promiseThen($http({
             method: 'POST',
             url: url,
             data: JSON.stringify(esQuery),
             headers: {'Content-Type': 'application/json'}
-          });
+          }), successcb, errorcb);
+
+
         }
       }
     };

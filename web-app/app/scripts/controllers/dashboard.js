@@ -6,15 +6,82 @@ angular.module('webAppApp')
    var server = EsService.server('http://localhost:9200/duinodataviz/_search');
    var esCall = {
      "query": {
-      "match_all" : { } 
+      "filtered" : {
+          "query" : {
+             "match_all" : { } 
+          },
+          "filter" : {
+              "term" : {
+                  "type" : "son" }
+              }
+          }
+      }
+    ,"facets" : {
+        "temperature" : {
+            "date_histogram" : {
+                "field" : "datetime",
+                "value_field" : "value",
+                "interval" : "10m"
+            }
+
+        }
     }
    };
 
+   $scope.dataSonore = server.post(esCall);
+    
 
-  server.post(esCall).then(function(result) {
-     console.log(result);
-     $scope.results = result.data;
-     $scope.total = result.data.hits.total;
-  });
-      
+   var esCall = {
+     "query": {
+      "filtered" : {
+          "query" : {
+             "match_all" : { } 
+          },
+          "filter" : {
+              "term" : {
+                  "type" : "lumiere" }
+              }
+          }
+      }
+    ,"facets" : {
+        "temperature" : {
+            "date_histogram" : {
+                "field" : "datetime",
+                "value_field" : "value",
+                "interval" : "10m"
+            }
+
+        }
+    }
+   };
+
+   $scope.dataLumiere = server.post(esCall);
+
+
+   var esCall = {
+     "query": {
+      "filtered" : {
+          "query" : {
+             "match_all" : { } 
+          },
+          "filter" : {
+              "term" : {
+                  "type" : "temperature" }
+              }
+          }
+      }
+    ,"facets" : {
+        "temperature" : {
+            "date_histogram" : {
+                "field" : "datetime",
+                "value_field" : "value",
+                "interval" : "10m"
+            }
+
+        }
+    }
+   };
+
+   $scope.dataTemperature = server.post(esCall);
+
 });
