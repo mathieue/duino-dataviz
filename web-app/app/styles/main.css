@@ -1,7 +1,21 @@
+/*
+
+black / background
+#21201e 
+
+// vert 
+#b0ce34
+
+// blue
+#4eb9d6
+
+
+*/
+
 body {
-    background: #fafafa;
+    background: #21201e;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
+    color: #b0ce34;
 }
 
 .hero-unit {
